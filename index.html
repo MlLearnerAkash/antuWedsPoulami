@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antu & Poulami | The Wedding Celebration</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        /* --- 1. VARIABLES & THEME --- */
+        :root {
+            --bg-color: #FFFBF5;       /* Cream/Off-white */
+            --bg-secondary: #f4efe9;   /* Slightly darker cream for sections */
+            --text-color: #3E2723;     /* Dark Coffee Brown */
+            --text-light: #6d4c41;     /* Lighter Brown for body text */
+            --accent-color: #A16E5B;   /* Terracotta */
+            --border-width: 15px;      /* Thickness of the frame */
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        
+        /* --- 2. GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+            /* The signature frame border */
+            border: var(--border-width) solid var(--accent-color);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            color: var(--text-color);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        .italic { font-style: italic; }
+
+        /* Divider Decoration */
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* Button Style */
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 12px 30px;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border: 1px solid var(--text-color);
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--text-color);
+        }
+
+        /* --- 3. NAVIGATION --- */
+        nav {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(161, 110, 91, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-color);
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-style: italic;
+            border: 1px solid var(--text-color);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .invocation {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .hero-date {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+        }
+
+        .hero-img-wrapper {
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        /* --- 5. COUNTDOWN --- */
+        .countdown-section {
+            background-color: var(--bg-secondary);
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-family: var(--font-heading);
+            color: var(--text-color);
+        }
+
+        .time-box {
+            text-align: center;
+        }
+
+        .time-val {
+            font-size: 2.5rem;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-body);
+        }
+
+        /* --- 6. STORY SECTION --- */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px; /* Soft edge */
+        }
+
+        .story-content h2 {
+            text-align: left;
+        }
+
+        /* --- 7. EVENTS / ITINERARY --- */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .event-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+        }
+
+        .event-date {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-details {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        /* --- 8. GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- 9. RSVP FORM --- */
+        .rsvp-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .rsvp-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .form-input, .form-select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .form-input:focus, .form-select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background-color: #fff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--accent-color);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* --- 10. FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+        
+        footer p { color: rgba(255,255,255, 0.7); }
+        footer h2 { color: var(--bg-color); }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            body {
+                border-width: 8px; /* Thinner border on mobile */
+            }
+
+            nav {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none; /* Hide default links */
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-color);
+                padding: 20px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 { font-size: 3rem; }
+            
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-grid .story-img {
+                order: -1; /* Image on top on mobile */
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Stack images */
+            }
+
+            #countdown {
+                gap: 20px;
+            }
+            
+            .time-val { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">A&P</div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#story" class="nav-link">Our Story</a>
+            <a href="#events" class="nav-link">Itinerary</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#rsvp" class="nav-link">RSVP</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="invocation">|| Shree Ganeshay Namah ||</div>
+            <h1>Antu & Poulami</h1>
+            <p class="hero-date">March 9 - 10, 2026 • Chandipur, West-Bengal</p>
+            
+            <div class="hero-img-wrapper">
+                <!-- Using Unsplash image matching the theme -->
+                <img src="assets/gallery/hero.jpeg" alt="Indian Couple" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER -->
+    <section class="countdown-section">
+        <div class="container">
+            <div id="countdown">
+                <div class="time-box">
+                    <span class="time-val" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-val" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-val" id="minutes">00</span>
+                    <span class="time-label">Mins</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-val" id="seconds">00</span>
+                    <span class="time-label">Secs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section id="story" class="section-padding">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2>How We Met</h2>
+                    <div class="divider"><i class="fas fa-leaf"></i></div>
+                    <p>We first crossed paths in school — classmates who bonded over shared lunches, exams, and a playlist of nostalgic songs. What began as friendship slowly grew into something deeper, rooted in laughter, trust, and a lifetime of small moments.</p>
+                    <p>More than ten years on, we've navigated long-distance separations, different cities, and countless late-night calls. Despite the miles, our lives stayed entangled and our bond only grew stronger. Now, after a decade of memories and unwavering support, we can't wait to celebrate this next chapter with our nearest and dearest.</p>
+                </div>
+                <div class="story-img">
+                    <img src="assets/gallery/love_story.jpg" alt="Couple holding hands">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS / ITINERARY -->
+    <section id="events" class="section-padding" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2>The Celebration</h2>
+            <p class="text-center">Join us for three days of love, laughter, and tradition.</p>
+            <div class="divider"><i class="fas fa-drum"></i></div>
+
+            <div class="events-grid">
+                <!-- Day 1 -->
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-hand-sparkles"></i></div>
+                    <span class="event-date">March 9, 2026 | 08:00 PM</span>
+                    <h3 class="event-title">Mehendi & Welcome Lunch</h3>
+                    <p class="event-details">Poolside, The Oberoi Udaivilas</p>
+                    <p class="event-details italic">Dress Code: Bright & Breezy (Pastels)</p>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-music"></i></div>
+                    <span class="event-date">March 9, 2026 | 8:00 PM</span>
+                    <h3 class="event-title">Sangeet Night</h3>
+                    <p class="event-details">The Grand Ballroom</p>
+                    <p class="event-details italic">Dress Code: Glamour & Glitz (Indo-Western)</p>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-fire-alt"></i></div>
+                    <span class="event-date">March 10, 2026 | 02:00 AM</span>
+                    <h3 class="event-title">The Wedding Pheras</h3>
+                    <p class="event-details">Lakeside Terrace</p>
+                    <p class="event-details italic">Dress Code: Traditional Indian</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <h2>Captured Moments</h2>
+            <div class="divider"><i class="fas fa-camera-retro"></i></div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595523111077-e925b4488390?q=80&w=1974&auto=format&fit=crop" alt="Gallery 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1549416878-b9ca95e9f8f4?q=80&w=1974&auto=format&fit=crop" alt="Gallery 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1632158308436-e8d1a129f1b9?q=80&w=2070&auto=format&fit=crop" alt="Gallery 3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588691880486-1e6495379058?q=80&w=2070&auto=format&fit=crop" alt="Gallery 4"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1587271407850-8d43891882dd?q=80&w=2070&auto=format&fit=crop" alt="Gallery 5"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" alt="Gallery 6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section id="rsvp" class="section-padding rsvp-section">
+        <div class="container">
+            <h2>RSVP</h2>
+            <p class="text-center">Please respond by March 9th, 2026</p>
+            <div class="divider"><i class="fas fa-envelope-open-text"></i></div>
+
+            <form class="rsvp-form" id="rsvpForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Number of Guests</label>
+                    <select class="form-select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Events Attending</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Mehendi (Dec 14)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Sangeet (Dec 15)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked> Wedding Pheras (Dec 16)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Dietary Restrictions / Notes</label>
+                    <textarea rows="4" placeholder="Any allergies or special requests?"></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Send RSVP</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <h2>Antu & Poulomi</h2>
+            <p>#AntuKiPoulami2026</p>
+            <br>
+            <p style="font-size: 0.8rem;">With love❤️ from Akash.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 2. Countdown Timer Logic
+        const weddingDate = new Date("March 9, 2026 20:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "The Wedding has Started!";
+            }
+        }, 1000);
+
+        // 3. RSVP Form Submission Simulation
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "Sending...";
+            
+            setTimeout(() => {
+                alert("Thank you! Your RSVP has been received. We can't wait to see you!");
+                btn.innerText = "Sent Successfully";
+                btn.style.backgroundColor = "#4CAF50";
+                btn.style.borderColor = "#4CAF50";
+                this.reset();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
